@@ -1,7 +1,7 @@
 # Graph Game
 Игра, цель которой распутать пересекающиеся ребра графа.
 
-Поигирать можно [здесь](https://hiba9201-graph-game.herokuapp.com/).
+Поиграть можно [здесь](https://hiba9201-graph-game.herokuapp.com/).
 
 ## Конфигурация графа
 
