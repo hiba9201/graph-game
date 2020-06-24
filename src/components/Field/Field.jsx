@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
+import update from 'immutability-helper';
+
 import ItemTypes from '../ItemTypes';
 import DragObject from '../DragObject/DragObject';
-import update from 'immutability-helper';
 import config from '../../config/config';
 import Modal from "../Modal/Modal";
 
-const styles = {
-  width: 600,
-  height: 600,
-  border: '2px solid #c4c4c4',
-  borderRadius: '10px',
-  position: 'relative',
-  margin: '100px auto',
-  backgroundColor: "#f3f3f3"
-};
+import './Field.css';
+
 
 function multiplyVectors(vector1, vector2) {
   return vector1.x * vector2.y - vector1.y * vector2.x;
@@ -33,7 +27,7 @@ function areVectorsCrossed(vector1, vector2, vector3, vector4) {
   return v1 * v2 < 0 && v3 * v4 < 0;
 }
 
-function Field({ connectDropTarget }) {
+function Field() {
   const [ nodes, setNodes ] = useState(config.nodes);
   const [ edges, setEdges ] = useState(config.edges);
   const [ showModal, setShowModal ] = useState(false);
@@ -45,25 +39,27 @@ function Field({ connectDropTarget }) {
   };
 
   const moveNode = (id, left, top) => {
-    setNodes(update(edges, {
-      [id]: {
-        $merge: { left, top },
-      }
-    }));
+    setNodes(
+      update(nodes, {
+        [id]: {
+          $merge: { left, top },
+        }
+      })
+    );
   };
 
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
-    drop(props, monitor) {
+    drop(item, monitor) {
       const checked = [];
 
-      for (let line1 of edges) {
-        for (let line2 of edges) {
-          if (checked.includes(line2)) {
+      for (let firstEdge of edges) {
+        for (let secondEdge of edges) {
+          if (checked.includes(secondEdge)) {
             continue;
           }
 
-          if (areVectorsCrossed(edges[line1[0]], edges[line1[1]], edges[line2[0]], edges[line2[1]])) {
+          if (areVectorsCrossed(nodes[firstEdge[0]], nodes[firstEdge[1]], nodes[secondEdge[0]], nodes[secondEdge[1]])) {
             if (showModal) {
               setShowModal(false);
             }
@@ -72,16 +68,16 @@ function Field({ connectDropTarget }) {
           }
         }
 
-        checked.push(line1);
+        checked.push(firstEdge);
       }
 
       setShowModal(true);
     },
-    hover(props, monitor) {
-      const item = monitor.getItem();
+    hover(item, monitor) {
       const delta = monitor.getDifferenceFromInitialOffset();
       let left = Math.round(item.left + delta.x);
       let top = Math.round(item.top + delta.y);
+
       if (top < 0) {
         top = 0;
       }
@@ -94,33 +90,24 @@ function Field({ connectDropTarget }) {
       if (left < 0) {
         left = 0;
       }
+
       moveNode(item.id, left, top);
     }
   });
 
-  return connectDropTarget(
-    <div>
+  return (
+    <div ref={drop} className="outer-field">
       <Modal showModal={showModal} restartGame={restartGame} />
 
-      <div ref={drop} style={styles}>
-        <svg style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '600px',
-          width: '600px'
-        }}>
+      <div className="field">
+        <svg className="svg-field">
           {edges.map(([a, b]) => {
             return (
               <line x1={nodes[a].left + 20}
                     y1={nodes[a].top + 20}
                     x2={nodes[b].left + 20}
                     y2={nodes[b].top + 20}
-                    style={{
-                      stroke: '#C4CCF9',
-                      strokeWidth: 5,
-                      opacity: '0.8'
-                    }}
+                    className="edge"
               />
             );
           })}

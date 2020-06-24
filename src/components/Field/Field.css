@@ -1,5 +1,28 @@
+.outer-field {
+    width: 100%;
+    height: 100%;
+}
+
 .field {
-    width: 960px;
-    height: 680px;
-    background-color: #000;
+    width: 600px;
+    height: 600px;
+    border: 2px solid #c4c4c4;
+    border-radius: 10px;
+    position: relative;
+    margin: 100px auto;
+    background-color: #f3f3f3;
+}
+
+.svg-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 600px;
+    width: 600px;
+}
+
+.edge {
+    stroke: #c4ccf9;
+    stroke-width: 5;
+    opacity: .8;
 }
