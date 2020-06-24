@@ -3,6 +3,7 @@ import './App.css';
 import Field from './components/Field/Field';
 import TouchBackend from 'react-dnd-touch-backend'
 import { DndProvider } from 'react-dnd';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       }}>
         <Field />
       </DndProvider>
+      <Footer />
     </>
   );
 }
