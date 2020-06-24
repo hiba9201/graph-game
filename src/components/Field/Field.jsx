@@ -8,6 +8,7 @@ import config from '../../config/config';
 import Modal from "../Modal/Modal";
 
 import './Field.css';
+import Header from "../Header/Header";
 
 
 function multiplyVectors(vector1, vector2) {
@@ -81,11 +82,11 @@ function Field() {
       if (top < 0) {
         top = 0;
       }
-      if (top > 560) {
-        top = 560;
+      if (top > 510) {
+        top = 510;
       }
-      if (left > 560) {
-        left = 560;
+      if (left > 510) {
+        left = 510;
       }
       if (left < 0) {
         left = 0;
@@ -96,7 +97,8 @@ function Field() {
   });
 
   return (
-    <div ref={drop} className="outer-field">
+    <div ref={drop} className="drag-area">
+      <Header />
       <Modal showModal={showModal} restartGame={restartGame} />
 
       <div className="field">
