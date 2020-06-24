@@ -1,0 +1,41 @@
+.modal-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+
+.modal-background_show-modal {
+    display: block;
+}
+
+.modal {
+    border-radius: 3px;
+    margin: 200px auto;
+    width: max-content;
+    padding: 50px 60px;
+    background-color: #f3f3f3;
+    text-align: center;
+}
+
+.modal__header {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.modal__button {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    margin-top: 10px;
+    padding: 15px 30px;
+    background-color: #798fff;
+    color: #f3f3f3;
+    font-size: 20px;
+    font-weight: bold;
+}
