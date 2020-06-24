@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 import update from 'immutability-helper';
 
 import ItemTypes from '../ItemTypes';
-import DragObject from '../DragObject/DragObject';
+import Node from '../Node/Node';
 import config from '../../config/config';
 import Modal from "../Modal/Modal";
 
@@ -117,9 +117,9 @@ function Field() {
           const { left, top } = nodes[key];
 
           return (
-            <DragObject key={key} id={key} left={left} top={top}>
+            <Node key={key} id={key} left={left} top={top}>
               {key}
-            </DragObject>
+            </Node>
           );
         })}
       </div>
