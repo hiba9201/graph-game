@@ -10,12 +10,12 @@ function Header() {
         <ul className="header__links">
           <li className="header__link-item">
             <span className="header__link-icon fa fa-github" aria-hidden="true" />
-            <a className="header__link" target="_blank"
+            <a className="header__link" target="_blank" rel="noopener noreferrer"
                href="https://github.com/hiba9201/graph-game">GitHub</a>
           </li>
           <li className="header__link-item">
             <span className="header__link-icon fa fa-twitter" aria-hidden="true" />
-            <a className="header__link" target="_blank"
+            <a className="header__link" target="_blank" rel="noopener noreferrer"
                href="https://twitter.com/jerry_raccoon">Twitter</a>
           </li>
         </ul>
