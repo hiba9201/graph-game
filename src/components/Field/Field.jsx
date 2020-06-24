@@ -16,18 +16,18 @@ const styles = {
   backgroundColor: "#f3f3f3"
 };
 
-function multifyVectors(vector1, vector2) {
+function multiplyVectors(vector1, vector2) {
   return vector1.x * vector2.y - vector1.y * vector2.x;
 }
 
 function areVectorsCrossed(vector1, vector2, vector3, vector4) {
-  const v1 = multifyVectors({ x: vector4.left - vector3.left, y: vector4.top - vector3.top },
+  const v1 = multiplyVectors({ x: vector4.left - vector3.left, y: vector4.top - vector3.top },
     { x: vector1.left - vector3.left, y: vector1.top - vector3.top });
-  const v2 = multifyVectors({ x: vector4.left - vector3.left, y: vector4.top - vector3.top },
+  const v2 = multiplyVectors({ x: vector4.left - vector3.left, y: vector4.top - vector3.top },
     { x: vector2.left - vector3.left, y: vector2.top - vector3.top });
-  const v3 = multifyVectors({ x: vector2.left - vector1.left, y: vector2.top - vector1.top },
+  const v3 = multiplyVectors({ x: vector2.left - vector1.left, y: vector2.top - vector1.top },
     { x: vector3.left - vector1.left, y: vector3.top - vector1.top });
-  const v4 = multifyVectors({ x: vector2.left - vector1.left, y: vector2.top - vector1.top },
+  const v4 = multiplyVectors({ x: vector2.left - vector1.left, y: vector2.top - vector1.top },
     { x: vector4.left - vector1.left, y: vector4.top - vector1.top });
 
   return v1 * v2 < 0 && v3 * v4 < 0;
