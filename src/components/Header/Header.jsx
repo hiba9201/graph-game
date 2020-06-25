@@ -18,6 +18,11 @@ function Header() {
             <a className="header__link" target="_blank" rel="noopener noreferrer"
                href="https://vk.com/jerry_raccoon">VK</a>
           </li>
+          <li className="header__link-item">
+            <span className="header__link-icon fa fa-telegram" aria-hidden="true" />
+            <a className="header__link" target="_blank" rel="noopener noreferrer"
+               href="https://t.me/jerry_raccoon">Telegram</a>
+          </li>
         </ul>
       </div>
     </header>
